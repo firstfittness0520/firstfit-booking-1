@@ -391,7 +391,7 @@ body{font-family:var(--f-zh);background:var(--bg);color:var(--ink);min-height:10
       <select class="f-sel" id="login-teacher-select">
         <option value="">— 請選擇 —</option>
         <option value="Deer">Deer 老師</option><option value="Sherry">Sherry 老師</option>
-        <option value="珞禎">珞禎 老師</option><option value="Momo">Momo 老師</option>
+        <option value="Momo">Momo 老師</option>
       </select>
       <label class="f-lbl">密碼</label>
       <input type="password" class="f-pw" id="login-pw" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()">
@@ -562,17 +562,11 @@ const DEFAULT_SCHEDULES={
     ...[['12:00','13:00'],['13:00','14:00'],['14:00','15:00'],['15:00','16:00'],['16:00','17:00'],['17:00','18:00'],['18:00','19:00'],['19:00','20:00'],['20:00','21:00'],['21:00','22:00'],['22:00','23:00']].map(([s,e])=>({day:5,start:s,end:e,cap:1,disabled:false})),
   ],
   'Sherry':[
-    ...[['10:00','11:00'],['11:00','12:00'],['12:00','13:00'],['13:00','14:00'],['14:00','15:00'],['15:00','16:00']].map(([s,e])=>({day:2,start:s,end:e,cap:1,disabled:false})),
-    ...[['09:00','10:00'],['10:00','11:00'],['11:00','12:00'],['12:00','13:00'],['13:00','14:00'],['14:00','15:00'],['15:00','16:00'],['16:00','17:00'],['17:00','18:00']].map(([s,e])=>({day:4,start:s,end:e,cap:1,disabled:false})),
-  ],
-  '珞禎':[
-    ...[['08:00','09:00'],['09:00','10:00'],['10:00','11:00'],['11:00','12:00'],['12:00','13:00'],['13:00','14:00']].map(([s,e])=>({day:2,start:s,end:e,cap:1,disabled:false})),
-    ...[['08:00','09:00'],['09:00','10:00'],['10:00','11:00']].map(([s,e])=>({day:3,start:s,end:e,cap:1,disabled:false})),
-    ...[['08:00','09:00'],['09:00','10:00'],['10:00','11:00'],['11:00','12:00'],['12:00','13:00'],['13:00','14:00'],['14:00','15:00'],['15:00','16:00'],['16:00','17:00'],['17:00','18:00']].map(([s,e])=>({day:4,start:s,end:e,cap:1,disabled:false})),
+    ...[['12:00','13:00'],['13:00','14:00'],['14:00','15:00'],['15:00','16:00']].map(([s,e])=>({day:3,start:s,end:e,cap:1,disabled:false})),
   ],
   'Momo':[
-    ...[['09:00','10:00'],['10:00','11:00'],['11:00','12:00'],['12:00','13:00'],['13:00','14:00'],['15:00','16:00'],['16:00','17:00'],['17:00','18:00']].map(([s,e])=>({day:2,start:s,end:e,cap:1,disabled:false})),
-    ...[['09:00','10:00'],['10:00','11:00'],['11:00','12:00'],['12:00','13:00'],['13:00','14:00'],['15:00','16:00'],['16:00','17:00'],['17:00','18:00']].map(([s,e])=>({day:5,start:s,end:e,cap:1,disabled:false})),
+    ...[['09:00','10:00'],['10:00','11:00'],['11:00','12:00'],['12:00','13:00'],['13:00','14:00'],['14:00','15:00'],['15:00','16:00'],['16:00','17:00']].map(([s,e])=>({day:2,start:s,end:e,cap:1,disabled:false})),
+    ...[['09:00','10:00'],['10:00','11:00'],['11:00','12:00'],['12:00','13:00'],['13:00','14:00'],['14:00','15:00'],['15:00','16:00'],['16:00','17:00']].map(([s,e])=>({day:5,start:s,end:e,cap:1,disabled:false})),
   ]
 };
 
@@ -814,7 +808,7 @@ async function doLogin(){
     if(!r.ok){err.textContent='密碼錯誤';document.getElementById('login-pw').value='';return;}
   } else {
     hideLoading();
-    const pws={'Deer':'deer1234','Sherry':'sherry1234','珞禎':'luozhen1234','Momo':'momo1234'};
+    const pws={'Deer':'deer1234','Sherry':'sherry1234','Momo':'momo1234'};
     if(pws[t]!==pw){err.textContent='密碼錯誤';document.getElementById('login-pw').value='';return;}
   }
   curTeacher=t;leaveMode=false;tWeek=0;
@@ -926,7 +920,7 @@ async function saveNewPassword(){
     if(!r.ok){err.textContent=r.msg||'密碼修改失敗';return;}
   } else {
     hideLoading();
-    const pws={'Deer':'deer1234','Sherry':'sherry1234','珞禎':'luozhen1234','Momo':'momo1234'};
+    const pws={'Deer':'deer1234','Sherry':'sherry1234','Momo':'momo1234'};
     if(pws[curTeacher]!==cur){err.textContent='目前密碼不正確';return;}
   }
   closeChangePwModal();showToast('✓ 密碼已修改');
